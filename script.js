@@ -27,13 +27,18 @@ function initMatrixRain() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    // Start with black canvas
+    ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     // Characters to use in the rain
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
     const fontSize = 16;
     const columns = canvas.width / fontSize;
 
     // Array to track the y position of each column
-    const drops = Array(Math.floor(columns)).fill(1);
+    // Randomize initial positions to avoid wall-of-text effect
+    const drops = Array(Math.floor(columns)).fill(0).map(() => Math.floor(Math.random() * canvas.height / fontSize));
 
     // Draw function
     function draw() {
