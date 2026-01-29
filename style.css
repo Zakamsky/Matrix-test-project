@@ -118,6 +118,10 @@ section {
     backdrop-filter: blur(5px);
 }
 
+main {
+    view-transition-name: main-content;
+}
+
 /* Footer */
 footer {
     margin-top: 4rem;
@@ -152,5 +156,59 @@ footer {
 
     nav a {
         text-align: center;
+    }
+}
+
+/* View Transitions API */
+@view-transition {
+    navigation: auto;
+}
+
+/* Customize the transition animation */
+::view-transition-old(root) {
+    animation: fade-out 0.6s ease-out;
+}
+
+::view-transition-new(root) {
+    animation: fade-in 0.6s ease-in;
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Matrix-themed transition with green glow */
+::view-transition-old(root)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
+    animation: glow-fade 0.4s ease-out;
+}
+
+@keyframes glow-fade {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
