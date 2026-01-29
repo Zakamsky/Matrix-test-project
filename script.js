@@ -37,8 +37,8 @@ function initMatrixRain() {
     const columns = canvas.width / fontSize;
 
     // Array to track the y position of each column
-    // Randomize initial positions to avoid wall-of-text effect
-    const drops = Array(Math.floor(columns)).fill(0).map(() => Math.floor(Math.random() * canvas.height / fontSize));
+    // Start all drops from above with random delays for staggered effect
+    const drops = Array(Math.floor(columns)).fill(0).map(() => -Math.floor(Math.random() * 100));
 
     // Draw function
     function draw() {
